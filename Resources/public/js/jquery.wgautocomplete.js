@@ -81,7 +81,7 @@
             }
             var itemId = $( settings.selectedItem ).attr( 'wg-autocomplete-item-id' );
             var value = $( settings.selectedItem ).html();
-            settings.onSubmit( itemId, value, settings.selectedItem );
+            settings.onSubmit( itemId, value, this );
             return settings.returns;
         }
       });
