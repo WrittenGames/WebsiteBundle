@@ -1,13 +1,14 @@
 WGWebsiteBundle
 ===============
 
-The WGWebsiteBundle contains some common stuff needed in pretty much
-all my website projects, so I might just as well create a bundle for it.
+The WGWebsiteBundle contains some common stuff needed in pretty much all
+my website projects, so I thought I might as well create a bundle for it.
 
-Features include mostly just various UI stuff for now.
+Features include mostly just various skinnable UI stuff for now.
 
-Autocomplete
-------------
+## UI Components
+
+### Autocomplete
 
 A jQuery plugin and a Controller. Usage:
 
@@ -27,7 +28,17 @@ $( '#myInputElement' ).wgAutocomplete(
 });
 ```
 
-About
------
+### Dialogue
+
+This is a replacement for the built-in Javascript Alert, Confirm and Prompt
+dialogues as a jQuery plugin.
+
+...
+
+## Authentication
+
+...
+
+## About
 
 WGWebsiteBundle is a [Written Games](http://www.writtengames.com) project.
