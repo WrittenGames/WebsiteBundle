@@ -11,12 +11,14 @@
       'keyColumn'   : 'id',
       'timeout'     : 10000,
       'returns'     : true,
-      'callback'    : function(){}
+      'onSelected'  : function(){},
+      'onSubmit'    : function(){}
     }, options);
     
     // Internal settings
     settings.requestIndex = 0;
     settings.listVisible = false;
+    settings.selectedItem = false;
     
     // Functionality
     return this.each( function()
@@ -58,23 +60,28 @@
             if ( selected < 0 ) selected = 0;
             if ( selected > 0 )
             {
-              $( children[selected-1] ).addClass( 'wg-hovered' );
+              settings.selectedItem = children[selected-1];
+              $( settings.selectedItem ).addClass( 'wg-hovered' );
             }
             $( input ).attr( 'wg-selected-item', selected );
             break;
           case 40:  // down
             selected++;
             if ( selected > children.length ) selected = children.length;
-            $( children[selected-1] ).addClass( 'wg-hovered' );
+            settings.selectedItem = children[selected-1];
+            $( settings.selectedItem ).addClass( 'wg-hovered' );
             $( input ).attr( 'wg-selected-item', selected );
             break;
           case 13:  // enter
             if ( settings.listVisible )
             {
-              $( children[selected-1] ).click();
+              $( settings.selectedItem ).click();
               $( input ).attr( 'wg-selected-item', 0 );
               return false;
             }
+            var itemId = $( settings.selectedItem ).attr( 'wg-autocomplete-item-id' );
+            var value = $( settings.selectedItem ).html();
+            settings.onSubmit( itemId, value, settings.selectedItem );
             return settings.returns;
         }
       });
@@ -124,6 +131,7 @@
                     item.hover(
                       function()
                       {
+                        settings.selectedItem = this;
                         var container = $( this ).closest( '.wg-autocomplete-container' );
                         var input = $( container ).find( '.wg-autocomplete-input' );
                         var selected = $( this ).index() + 1;
@@ -133,6 +141,7 @@
                       },
                       function()
                       {
+                        settings.selectedItem = false;
                         var container = $( this ).closest( '.wg-autocomplete-container' );
                         var input = $( container ).find( '.wg-autocomplete-input' );
                         $( input ).attr( 'wg-selected-item', 0 );
@@ -148,7 +157,7 @@
                       $( input ).val( value );
                       $( '.wg-autocomplete-list' ).hide();
                       settings.listVisible = false;
-                      settings.callback( itemId, value, this );
+                      settings.onSelected( itemId, value, this );
                     });
                     listDiv.append( item );
                   }
