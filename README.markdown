@@ -35,6 +35,12 @@ dialogues as a jQuery plugin.
 
 ...
 
+### Loading status
+
+Loading status indicator, modal and non-modal
+
+...
+
 ## Authentication
 
 ...
