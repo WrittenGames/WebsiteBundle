@@ -57,6 +57,7 @@
         if ( $.inArray( e.keyCode, [13,38,40] ) != -1 ) return false;
         var query = $( this ).val();
         var parent = $( this ).parent();
+        $( this ).attr( 'wg-selected-item', 0 );
         $.ajax(
         {
           url:      settings.url,
