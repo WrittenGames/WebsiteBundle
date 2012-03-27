@@ -20,11 +20,7 @@ A jQuery plugin and a Controller. Usage:
 $( '#myInputElement' ).wgAutocomplete(
 {
   table: 'mytable',
-  valueColumn: 'mycolumn',
-  callback: function( key, value, element )
-  {
-    // Do something with the data provided
-  }
+  valueColumn: 'mycolumn'
 });
 ```
 
@@ -33,6 +29,7 @@ Available options include:
 * table - (mandatory) the table which to be queried
 * valueColumn - (mandatory) the string column to be queried for
 * keyColumn - (optional) the key column, default is 'id'
+* returns - (optional) whether or not pressing enter on a value containing input field submits the container form
 * onSelected - (optional) callback for selection of an item, takes the following parameters: id, value, element
 * onSubmit - (optional) callback for submitting the container form by pressing Enter, takes the following parameters: id, value, element
 * url - (optional) if you want to use your own controller, use this option to set its URL
@@ -40,8 +37,8 @@ Available options include:
 
 ### Dialogue
 
-This is a replacement for the built-in Javascript Alert, Confirm and Prompt
-dialogues as a jQuery plugin.
+This is a prettier and customisable replacement for the Alert, Confirm and Prompt
+dialogues built into Javascript as a jQuery plugin.
 
 ...
 
