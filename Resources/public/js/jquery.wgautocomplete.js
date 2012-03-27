@@ -75,18 +75,18 @@
             $( input ).attr( 'wg-selected-item', selected );
             break;
           case 13:  // enter
-            console.log( 'list visible: ' + settings.listVisible );
+            //console.log( 'list visible: ' + settings.listVisible );
             if ( settings.listVisible )
             {
               settings.listVisible = false;
               if ( settings.selectedItem )
               {
-                console.log( 'item selected: ' + $( settings.selectedItem ).html() );
+                //console.log( 'item selected: ' + $( settings.selectedItem ).html() );
                 $( settings.selectedItem ).click();
               }
               else
               {
-                console.log( 'no item selected' );
+                //console.log( 'no item selected' );
                 $( '.wg-autocomplete-list' ).hide();
               }
               $( input ).attr( 'wg-selected-item', 0 );
