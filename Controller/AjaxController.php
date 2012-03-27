@@ -4,7 +4,7 @@ namespace WG\WebsiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use WG\WebsiteBundle\Response\JsonResponse;
 
 class AjaxController extends Controller
 {
@@ -15,12 +15,13 @@ class AjaxController extends Controller
     $valueColumn  = $request->get( 'valueColumn' );
     $keyColumn    = $request->get( 'keyColumn' );
     $query        = $request->get( 'query' );
+    $requestIndex = $request->get( 'requestIndex' );
     $connection = $this->get( 'database_connection' );
     $dql = "SELECT e." . $keyColumn . ", e." . $valueColumn . " "
          . "FROM " . $table . " e "
          . "WHERE e." . $valueColumn . " LIKE ? "
          . "ORDER BY e." . $valueColumn . " ASC";
-    $attributes = $connection->fetchAll( $dql, array( $query . '%' ) );
-    return new Response( json_encode( $attributes ) );
+    $entities = $connection->fetchAll( $dql, array( $query . '%' ) );
+    return new JsonResponse( $entities, $requestIndex );
   }
 }
