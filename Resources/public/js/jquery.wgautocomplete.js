@@ -10,6 +10,7 @@
       'valueColumn' : 'username',
       'keyColumn'   : 'id',
       'timeout'     : 10000,
+      'returns'     : true,
       'callback'    : function(){}
     }, options);
     
@@ -68,12 +69,13 @@
             $( input ).attr( 'wg-selected-item', selected );
             break;
           case 13:  // enter
-            if ( listDiv.css( 'display' ) != 'none' )
+            if ( settings.listVisible )
             {
               $( children[selected-1] ).click();
               $( input ).attr( 'wg-selected-item', 0 );
               return false;
             }
+            return settings.returns;
         }
       });
       $( this ).keyup( function( e )
