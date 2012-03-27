@@ -1,0 +1,7 @@
+WGWebsiteBundle_homepage:
+    pattern:  /
+    defaults: { _controller: WGWebsiteBundle:Default:index }
+
+WGWebsiteBundle_login:
+    pattern:  /login
+    defaults: { _controller: WGWebsiteBundle:Default:login }
