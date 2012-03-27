@@ -3,32 +3,6 @@
 |   Helper functions w/ jQuery   |
 \*______________________________*/
 
-function ajaxSendForm( selector, responseType, callback )
-{
-  if ( typeof selector != 'undefined' )
-  {
-    if ( typeof callback == 'undefined' ) callback = function(){};
-    if ( typeof responseType == 'undefined' ) responseType = 'text';
-    $.ajax(
-    {
-      url: $( selector ).attr( 'action' ),
-      type: $( selector ).attr( 'method' ),
-      data: $( selector ).serializeArray(),
-      dataType: responseType,
-      timeout: 10000,
-      success: function( response )
-      {
-        callback( response )
-      },
-      error: function( e )
-      {
-        log( e );
-      }
-    });
-  }
-  return false;
-}
-
 function isIE()
 {
   if ( $.browser.msie )
