@@ -14,14 +14,42 @@
     
     return this.each( function()
     {
+      var selected = 0;
       $( this ).addClass( 'wg-autocomplete-input' );
       var parent = $( this ).parent();
       var container = $( '<div></div>' );
       container.addClass( 'wg-autocomplete-container' );
       $( this ).remove().appendTo( container );
       parent.append( container );
-      $( this ).keyup( function()
+      $( this ).keydown( function( e )
       {
+        var children = $( '.wg-autocomplete-list' ).children();
+        $( children ).removeClass( 'wg-hovered' );
+        switch ( e.keyCode )
+        {
+          case 38:  // up
+            selected--;
+            if ( selected < 0 ) selected = 0;
+            if ( selected > 0 )
+            {
+              $( children[selected-1] ).addClass( 'wg-hovered' );
+            }
+            break;
+          case 40:  // down
+            selected++;
+            if ( selected > children.length ) selected = children.length;
+            $( children[selected-1] ).addClass( 'wg-hovered' );
+            break;
+          case 13:  // enter
+            $( children[selected-1] ).click();
+            return false;
+          default:
+            break;
+        }
+      });
+      $( this ).keyup( function( e )
+      {
+        if ( $.inArray( e.keyCode, [13,38,40] ) != -1 ) return false;
         var query = $( this ).val();
         var parent = $( this ).parent();
         $.ajax(
@@ -50,7 +78,12 @@
               item.html( response[it][settings.valueColumn] );
               item.attr( 'wg-autocomplete-item-id', response[it][settings.keyColumn] );
               item.hover(
-                function() {$( this ).addClass( 'wg-hovered' );},
+                function()
+                {
+                  selected = $( this ).index() + 1;
+                  $( '.wg-autocomplete-item' ).removeClass( 'wg-hovered' );
+                  $( this ).addClass( 'wg-hovered' );
+                },
                 function() {$( this ).removeClass( 'wg-hovered' );}
               );
               item.click( function()

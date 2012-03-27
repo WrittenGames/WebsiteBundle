@@ -13,7 +13,7 @@ div.wg-autocomplete-container {
 
 div.wg-autocomplete-list {
   position: absolute;
-  top: 33px;
+  top: 28px;
   left: 5px;
   z-index: 901;
   border: 1px solid #333;
