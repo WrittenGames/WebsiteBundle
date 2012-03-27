@@ -29,8 +29,10 @@
       var parent = $( this ).parent();
       var container = $( '<div></div>' );
       container.addClass( 'wg-autocomplete-container' );
+      var sibling = $( this ).next();
       $( this ).remove().appendTo( container );
-      parent.append( container );
+      if ( sibling ) container.insertBefore( sibling );
+      else parent.append( container );
       $( this ).blur( function()
       {
         var container = $( this ).closest( '.wg-autocomplete-container' );
@@ -73,9 +75,20 @@
             $( input ).attr( 'wg-selected-item', selected );
             break;
           case 13:  // enter
+            console.log( 'list visible: ' + settings.listVisible );
             if ( settings.listVisible )
             {
-              $( settings.selectedItem ).click();
+              settings.listVisible = false;
+              if ( settings.selectedItem )
+              {
+                console.log( 'item selected: ' + $( settings.selectedItem ).html() );
+                $( settings.selectedItem ).click();
+              }
+              else
+              {
+                console.log( 'no item selected' );
+                $( '.wg-autocomplete-list' ).hide();
+              }
               $( input ).attr( 'wg-selected-item', 0 );
               return false;
             }
@@ -157,6 +170,7 @@
                       $( input ).val( value );
                       $( '.wg-autocomplete-list' ).hide();
                       settings.listVisible = false;
+                      settings.selectedItem = false;
                       settings.onSelected( itemId, value, this );
                     });
                     listDiv.append( item );
