@@ -28,40 +28,27 @@
         var children = $( container ).find( '.wg-autocomplete-list' ).children();
         var input = $( container ).find( '.wg-autocomplete-input' );
         var selected = $( input ).attr( 'wg-selected-item' );
-        console.log( children );
         $( children ).removeClass( 'wg-hovered' );
         switch ( e.keyCode )
         {
           case 38:  // up
-            console.log( 'started "up", decrementing "selected" from ' + selected );
             selected--;
-            console.log( 'to ' + selected );
             if ( selected < 0 ) selected = 0;
             if ( selected > 0 )
             {
-              console.log( '"selected" is greater 0, adding "wg-hovered" class to item' );
               $( children[selected-1] ).addClass( 'wg-hovered' );
-              console.log( children[selected-1] );
             }
-            else console.log( '"selected" equals 0' );
             $( input ).attr( 'wg-selected-item', selected );
-            console.log( 'finished "up"' );
             break;
           case 40:  // down
-            console.log( 'started "down", incrementing "selected" from ' + selected );
             selected++;
-            console.log( 'to ' + selected );
             if ( selected > children.length ) selected = children.length;
-            console.log( '"selected" is greater 0, adding "wg-hovered" class to item' );
             $( children[selected-1] ).addClass( 'wg-hovered' );
-            console.log( children[selected-1] );
             $( input ).attr( 'wg-selected-item', selected );
-            console.log( 'finished "down"' );
             break;
           case 13:  // enter
             $( children[selected-1] ).click();
             $( input ).attr( 'wg-selected-item', 0 );
-            console.log( 'enter 0' );
             return false;
         }
       });
