@@ -5,3 +5,7 @@ WGWebsiteBundle_homepage:
 WGWebsiteBundle_login:
     pattern:  /login
     defaults: { _controller: WGWebsiteBundle:Default:login }
+
+WGWebsiteBundle_autocomplete:
+    pattern:  /ajax/autocomplete
+    defaults: { _controller: WGWebsiteBundle:Ajax:autocomplete }
