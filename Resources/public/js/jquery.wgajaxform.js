@@ -12,11 +12,13 @@
     
     this.each( function()
     {
+      formData = $( this ).serializeArray();
+      //for ( var it in formData ) log( formData[it].name + ': ' + formData[it].value );
       $.ajax(
       {
         url: $( this ).attr( 'action' ),
         type: $( this ).attr( 'method' ),
-        data: $( this ).serializeArray(),
+        data: formData,
         dataType: settings.responseType,
         timeout: 10000,
         success: settings.success,
