@@ -3,6 +3,7 @@
   // TODO:
   // - Fix bug for list not disappearing on blur with empty field.
   // - Don't reload for narrowing down the options, do that client-side.
+  // ... or replace this whole thing with the existing jQuery pendant.
   $.fn.wgAutocomplete = function( options )
   {
     // Overridable settings
