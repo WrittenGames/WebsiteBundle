@@ -5,32 +5,58 @@
 /* Dialogues */
 /* Form elements (inputs, buttons, checkboxes etc.) */
 
-/*'''''''''''''''''''''''*\
-|   Autocomplete Widget   |
-\*_______________________*/
+/*'''''''''''''''''''''''''''''''*\
+|   Moveable deletable tag list   |
+\*_______________________________*/
 
-div.wg-autocomplete-container {
-  display: inline-block;
+ul.wg-taglist {
+}
+
+li.wg-tag * {
+  vertical-align: text-bottom;
+}
+
+li.wg-tag img.handle {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+li.wg-tag {
+  margin: 2px 2px;
   position: relative;
+  display: inline-block;
+  height: 16px;
+  border: 1px solid #fff;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  border-right-color: #bcd;
+  border-bottom-color: #bcd;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  padding: 2px 26px 2px 2px;
+  background-color: #DAE0FE;
 }
 
-div.wg-autocomplete-list {
+li.wg-tag span.label {
+  color: #555;
+  text-shadow: 1px 1px 1px #fff;
+  margin-left: 6px;
+}
+
+li.wg-tag a.remove {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  top: 28px;
-  left: 5px;
-  z-index: 901;
-  border: 1px solid #333;
-  border-top: 0;
-  width: 150px;
-  background-color: #fff;
+  top: 0; right: 0;
+  cursor: pointer;
+  background: transparent url( /assets/images/close-tag-sprite.png ) no-repeat 3px 3px;
 }
 
-div.wg-autocomplete-list div.wg-autocomplete-item {
-  white-space: nowrap;
-  overflow: hidden;
+li.wg-tag a.remove:hover {
+  background: transparent url( /assets/images/close-tag-sprite.png ) no-repeat 3px -29px;
 }
 
-div.wg-autocomplete-list div.wg-autocomplete-item.wg-hovered {
-  background-color: blue;
-  color: wheat;
+li.wg-tag.prototype {
+  display: none;
 }

@@ -1,13 +1,17 @@
 
 {% spaceless %}
-{% for tag in tags %}
-  <span class="tag {{ tagType }}" entity-id="{{ tag.id }}">
-    <span class="label">{{ attribute( tag, field ) }}</span>
+<ul class="wg-taglist" sort-persist-url="{{ sortPersistUrl }}">
+  {% for tag in tags %}
+    <li class="wg-tag {{ tagType }}" id="entity_{{ tag.id }}" entity-id="{{ tag.id }}">
+      <img alt="move" class="handle" src="/assets/images/move.png" />
+      <span class="label">{{ attribute( tag, field ) }}</span>
+      <a class="remove"></a>
+    </li>
+  {% endfor %}
+  <li class="wg-tag {{ tagType }} prototype" entity-id="0">
+    <img alt="move" class="handle" src="/assets/images/move.png" />
+    <span class="label"></span>
     <a class="remove"></a>
-  </span>
-{% endfor %}
-<span class="tag {{ tagType }} prototype" attribute-id="0">
-  <span class="label"></span>
-  <a class="remove"></a>
-</span>
+  </li>
+</ul>
 {% endspaceless %}
