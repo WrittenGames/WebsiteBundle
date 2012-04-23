@@ -1,0 +1,36 @@
+
+@import url( /bundles/wgwebsite/themes/regula/jquery-ui/jquery-ui.css );
+
+/* Web fonts */
+/* Dialogues */
+/* Form elements (inputs, buttons, checkboxes etc.) */
+
+/*'''''''''''''''''''''''*\
+|   Autocomplete Widget   |
+\*_______________________*/
+
+div.wg-autocomplete-container {
+  display: inline-block;
+  position: relative;
+}
+
+div.wg-autocomplete-list {
+  position: absolute;
+  top: 28px;
+  left: 5px;
+  z-index: 901;
+  border: 1px solid #333;
+  border-top: 0;
+  width: 150px;
+  background-color: #fff;
+}
+
+div.wg-autocomplete-list div.wg-autocomplete-item {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.wg-autocomplete-list div.wg-autocomplete-item.wg-hovered {
+  background-color: blue;
+  color: wheat;
+}
