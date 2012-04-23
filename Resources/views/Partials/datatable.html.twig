@@ -1,0 +1,114 @@
+
+
+  <table class="data" style="margin-top: 10px;">
+    <thead>
+      <tr>
+        {% for key, value in fields|items %}
+        <th>{{ key }}</th>
+        {%  endfor %}
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entity in entities %}
+        {% set rowOddOrEven = cycle(['odd', 'even'], loop.index) %}
+        <tr id="entity_{{ entity.id }}" class="entity {{ rowOddOrEven }}">
+          {% for field in fields %}
+            <td id="entity-name_{{ entity.id }}" style="width: 270px;">{{ attribute(entity, field) }}</td>
+          {% endfor %}
+          <td id="entity-name_{{ entity.id }}" style="width: 270px;">{{ attribute(entity, name) }}</td>
+          <td>
+            {% for assoc in org.attributeAssociations %}
+              {% if loop.index < 4 %}
+                {{ assoc.attribute.name }}
+              {% endif %}
+            {% else %}
+              No attributes associated yet. You may want to
+              <a class="withintext show-entity-edit-form">do that now.</a>
+            {% endfor %}
+          </td>
+          <td class="actions">
+            {% spaceless %}
+            <a class="actions edit toggle show-entity-edit-form">edit</a>
+            <a class="actions delete-confirm">
+              delete
+            </a>
+            <div class="deleteDialog">
+              <div class="dialogMessage">
+                Are you sure? This action cannot be undone.
+              </div>
+              <div class="dialogActions">
+                <a class="dialogActions delete" onclick="javascript:shieldsUp();"
+                  href="{{ path('TSNEmployeeBundle_organisations_delete', { 'id': org.id }) }}"
+                >
+                  delete
+                </a>
+                <a class="dialogActions cancel" onclick="javascript:$.fancybox.close(true);">
+                  cancel
+                </a>
+              </div>
+            </div>
+            {% endspaceless %}
+          </td>
+        </tr>
+        <tr id="entity-edit-form_{{ org.id }}" class="entity-edit-form {{ rowOddOrEven }}">
+          <td class="toggled-form-frame" colspan="3">
+            <table class="sub-form-container">
+              <tr>
+                <td style="width: 260px;">
+                  {% set updateFormInstance = craue_cloneForm(updateform) %}
+                  <form id="update-name_{{ org.id }}" class="update-name" method="post"
+                        action="{{ path('TSNEmployeeBundle_organisations_edit', { 'id' : org.id }) }}">
+                    <span class="row input">
+                      {{ form_widget(updateFormInstance.name, {'attr': {'value':org.name}}) }}
+                    </span>
+                    <span class="row submit">
+                      <input type="submit"
+                            class="actions update"
+                            value="update" />
+                    </span>
+                    <span class="ajax-response"></span>
+                  </form>
+                </td>
+                <td>
+                  {% spaceless %}
+                  {#
+                  <span class="tag">
+                    <span class="label">Full name</span>
+                    <a class="remove"></a>
+                  </span>
+                  <span class="tag">
+                    <span class="label">Start date</span>
+                    <a class="remove"></a>
+                  </span>
+                  <span class="tag">
+                    <span class="label">Shift</span>
+                    <a class="remove"></a>
+                  </span>
+                  <span class="tag">
+                    <span class="label">Triage</span>
+                    <a class="remove"></a>
+                  </span>
+                  #}
+                  {% include 'TSNWebsiteBundle:Partials:taglist.html.twig' with { 'tags': tags, 'tagType': 'attribute' } %}
+                  {% endspaceless %}
+                  <form class="associate-attribute">
+                    <div class="row input">
+                      <input type="text" />
+                    </div>
+                  </form>
+                </td>
+                <td class="actions" style="width: 110px;">
+                  <a class="actions cancel close-entity-edit-form">minimise form</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      {% else %}
+        <tr class="nodata">
+          <td colspan="3">No organisations defined yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>

@@ -1,0 +1,122 @@
+
+{# Main form widget #}
+
+{% block form_widget %}
+{% spaceless %}
+  {{ block('field_rows') }}
+  {{ form_rest(form) }}
+{% endspaceless %}
+{% endblock form_widget %}
+
+{# Form field row #}
+
+{% block field_row %}
+{% spaceless %}
+  <div class="row input">
+    {{ form_label(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+  </div>
+{% endspaceless %}
+{% endblock field_row %}
+
+{# Form errors #}
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    <ul class="error">
+        {% for error in errors %}
+            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
+
+{# Collection widget #}
+
+{% block collection_widget %}
+{% spaceless %}
+    <div class="collection-widget">
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        {{ form_errors(form) }}
+        <ul class="collection" last-index="0" {{ block('widget_container_attributes') }}>
+        {% for rows in form %}
+            <li class="collection-item">
+                {% set fieldNum = 1 %}
+                {% for row in rows %}
+                    <div class="field{{ fieldNum }}">
+                    {{ form_label(row) }}
+                    {{ form_widget(row, { 'attr': { 'class': 'test' }}) }}
+                    </div>
+                    {% set fieldNum = fieldNum + 1 %}
+                {% endfor %}
+                <a class="actions collection remove" title="remove form item" href="javascript:void()">
+                    remove
+                </a>
+                <div class="clear"></div>
+            </li>
+        {% endfor %}
+        </ul>
+        {{ form_rest(form) }}
+        <div class="row">
+            <a class="actions collection add" title="Add">
+                add
+            </a>
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+{% spaceless %}
+    <li class="collection-item">
+        {% set fieldNum = 1 %}
+        {% for row in prototype %}
+            <div class="field{{ fieldNum }}">
+                {{ form_label(row) }}
+                {{ form_widget(row, { 'attr': { 'class': 'test' }}) }}
+            </div>
+            {% set fieldNum = fieldNum + 1 %}
+        {% endfor %}
+        <a class="actions collection remove" title="remove form item">
+            remove
+        </a>
+        <div class="clear"></div>
+    </li>
+{% endspaceless %}
+{% endblock collection_item_widget %}
+
+{# Choice widget #}
+
+{% block choice_widget %}
+{% spaceless %}
+    {% if expanded %}
+        <div {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            {{ form_label(child) }}
+            {{ form_widget(child) }}
+        {% endfor %}
+        </div>
+    {% else %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option value="">{{ empty_value|trans }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('widget_choice_options') }}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('widget_choice_options') }}
+    </select>
+    {% endif %}
+{% endspaceless %}
+{% endblock choice_widget %}

@@ -1,0 +1,13 @@
+
+{% spaceless %}
+{% for tag in tags %}
+  <span class="tag {{ tagType }}" entity-id="{{ tag.id }}">
+    <span class="label">{{ attribute( tag, field ) }}</span>
+    <a class="remove"></a>
+  </span>
+{% endfor %}
+<span class="tag {{ tagType }} prototype" attribute-id="0">
+  <span class="label"></span>
+  <a class="remove"></a>
+</span>
+{% endspaceless %}
