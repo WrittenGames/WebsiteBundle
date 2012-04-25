@@ -12,13 +12,9 @@
 ul.wg-taglist {
 }
 
-li.wg-tag * {
+li.wg-tag img,
+li.wg-tag span {
   vertical-align: text-bottom;
-}
-
-li.wg-tag img.handle {
-  cursor: pointer;
-  opacity: 0.5;
 }
 
 li.wg-tag {
@@ -34,7 +30,7 @@ li.wg-tag {
   border-radius: 8px;
   -moz-border-radius: 8px;
   padding: 2px 26px 2px 2px;
-  background-color: #DAE0FE;
+  background-color: #ddd;
 }
 
 li.wg-tag span.label {
@@ -43,18 +39,70 @@ li.wg-tag span.label {
   margin-left: 6px;
 }
 
-li.wg-tag a.remove {
+li.wg-tag .wg-handle {
+  cursor: pointer;
+}
+
+li.wg-tag img.wg-handle.move {
+  opacity: 0.5;
+}
+
+li.wg-tag img.wg-handle.move:hover {
+  opacity: 1;
+}
+
+li.wg-tag a.wg-handle.default-remove {
   display: inline-block;
   width: 20px;
   height: 20px;
   position: absolute;
   top: 0; right: 0;
-  cursor: pointer;
   background: transparent url( /assets/images/close-tag-sprite.png ) no-repeat 3px 3px;
 }
 
-li.wg-tag a.remove:hover {
+li.wg-tag a.wg-handle.default-remove:hover {
   background: transparent url( /assets/images/close-tag-sprite.png ) no-repeat 3px -29px;
+}
+
+a.wg-tag-actions-button {
+  display: inline-block;
+  opacity: 0.5;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0; right: 0;
+  cursor: pointer;
+  background: transparent url( /assets/images/edit.png ) no-repeat 0 2px;
+}
+
+a.wg-tag-actions-button:hover {
+  opacity: 1;
+}
+
+ul.wg-tag-actions-popup {
+  display: none;
+  z-index: 666;
+  position: absolute;
+  right: 0;
+  top: 18px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  list-style: none;
+}
+
+ul.wg-tag-actions-popup li a {
+  display: block;
+  white-space: nowrap;
+  padding: 2px 4px;
+  color: #555;
+  cursor: pointer;
+  font-size: 8pt;
+}
+
+ul.wg-tag-actions-popup li a:hover {
+  background-color: #bcd;
+  color: #000;
 }
 
 li.wg-tag.prototype {

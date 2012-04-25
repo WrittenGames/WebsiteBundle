@@ -1,0 +1,49 @@
+{% spaceless %}
+
+  {# TAG #}
+  <li
+      {% if id is defined %}id="{{ id }}"{% endif %}
+      class="wg-tag{% if class is defined %} {{ class }}{% endif %}"
+      {% if entityId is defined %}entity-id="{{ entityId }}"{% endif %}
+      >
+
+    {# MOVE HANDLE #}
+    {% if movable is defined and movable %}
+      <img alt="move" class="wg-handle move" src="/assets/images/move.png" />
+    {% endif %}
+    
+    {# TAG LABEL #}
+    <span class="label">{{ label }}</span>
+    
+    {# ADDITIONAL ACTION HANDLES #}
+    {% if actions is defined and actions|length > 0 %}
+    
+      <span class="wg-tag-actions">
+        
+        <a class="wg-tag-actions-button"></a>
+        
+        <ul class="wg-tag-actions-popup">
+          
+          {% for handle, action in actions %}
+            
+            <li>
+              <a class="wg-handle{% if action.class is defined %} {{ action.class }}{% else %} {{ handle }}{% endif %}">
+                {% if action.label is defined %}{{ action.label }}{% else %}{{ handle }}{% endif %}
+              </a>
+            </li>
+            
+          {% endfor %}
+          
+        </ul>
+        
+      </span>
+    
+    {% endif %}
+    
+    {# DELETE/REMOVE HANDLE #}
+    {% if remove is defined and remove == true %}
+      <a class="wg-handle default-remove"></a>
+    {% endif %}
+
+  </li>
+{% endspaceless %}
