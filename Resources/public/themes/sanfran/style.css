@@ -108,3 +108,24 @@ ul.wg-tag-actions-popup li a:hover {
 li.wg-tag.prototype {
   display: none;
 }
+
+/*''''''''''''''''''''''''''''''''''''''*\
+|   Client-side validation error popup   |
+\*______________________________________*/
+
+.wg-validation-error-popup {
+  position: absolute;
+  top: 0; left: 120px;
+  z-index: 99;
+  height: 18px;
+  padding: 6px 12px 4px 30px;
+  border: 2px solid #f6b700;
+  border-radius: 6px;
+  color: #f6b700;
+  font-weight: bold;
+  background-color: #fff;
+  background-image: url( /bundles/wgwebsite/themes/sanfran/images/formfieldhint.png );
+  background-repeat: no-repeat;
+  background-position: 6px 2px;
+  box-shadow: 0 4px 8px rgba( 0, 0, 0, 0.3 );
+}

@@ -64,6 +64,11 @@ function dump( obj )
   }
 }
 
+function isArray( obj )
+{
+  return typeof( obj )== 'object' && ( obj instanceof Array );
+}
+
 function log( str )
 {
   if ( typeof console != 'undefined' ) console.log( str );
