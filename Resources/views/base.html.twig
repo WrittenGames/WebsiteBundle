@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {# <meta charset="UTF-8" /> #}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% block metas %}
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% endblock %}
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block favicon %}
       <link rel="shortcut icon" href="{{ asset('bundles/wgwebsite/images/favicon.ico') }}" />
