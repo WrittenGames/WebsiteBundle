@@ -11,7 +11,7 @@
     {% block stylesheets %}
       <link href="{{ asset('bundles/wgwebsite/themes/sanfran/style.css') }}" rel="stylesheet" type="text/css" />
     {% endblock %}
-    {% block conditional_stylesheets %}
+    {% block conditionals %}
     {% endblock %}
     {% block javascripts %}
       <script src="{{ asset('bundles/wgwebsite/js/jquery.min.js') }}"></script>
@@ -19,6 +19,9 @@
       <script src="{{ asset('bundles/wgwebsite/js/jquery.wgajaxform.js') }}"></script>
       <script src="{{ asset('bundles/wgwebsite/js/main.js') }}"></script>
     {% endblock %}
+      <!--[if IE 7]>
+        <script src="{{ asset('bundles/wgwebsite/js/jquery.ba-hashchange.min.js') }}"></script>
+      <![endif]-->
   </head>
   <body>
     {% block body %}Written Games website{% endblock %}
