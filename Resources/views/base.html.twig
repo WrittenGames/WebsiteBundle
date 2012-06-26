@@ -9,19 +9,28 @@
       <link rel="shortcut icon" href="{{ asset('bundles/wgwebsite/images/favicon.ico') }}" />
     {% endblock %}
     {% block stylesheets %}
+      <!--[if gt IE 7]>
+        <link href="{{ asset('bundles/wgwebsite/lib/chosen/chosen.css') }}" rel="stylesheet" type="text/css" />
+      <![endif]-->
       <link href="{{ asset('bundles/wgwebsite/themes/sanfran/style.css') }}" rel="stylesheet" type="text/css" />
     {% endblock %}
     {% block conditionals %}
     {% endblock %}
     {% block javascripts %}
       <script src="{{ asset('bundles/wgwebsite/js/jquery.min.js') }}"></script>
+      <!--[if lt IE 9]>
+        <script src="{{ asset('bundles/wgwebsite/lib/IE9.js') }}">IE7_PNG_SUFFIX=":";</script>
+      <![endif]-->
+      <!--[if gt IE 7]>
+        <script src="{{ asset('bundles/wgwebsite/lib/chosen/chosen.jquery.js') }}"></script>
+      <![endif]-->
+      <!--[if IE 7]>
+        <script src="{{ asset('bundles/wgwebsite/js/jquery.ba-hashchange.min.js') }}"></script>
+      <![endif]-->
       <script src="{{ asset('bundles/wgwebsite/js/jquery-ui.min.js') }}"></script>
       <script src="{{ asset('bundles/wgwebsite/js/jquery.wgajaxform.js') }}"></script>
       <script src="{{ asset('bundles/wgwebsite/js/main.js') }}"></script>
     {% endblock %}
-      <!--[if IE 7]>
-        <script src="{{ asset('bundles/wgwebsite/js/jquery.ba-hashchange.min.js') }}"></script>
-      <![endif]-->
   </head>
   <body>
     {% block body %}Written Games website{% endblock %}
