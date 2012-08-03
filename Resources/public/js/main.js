@@ -1,17 +1,27 @@
 
 $( document ).ready( function()
 {
-  $( '.wg-tag-actions' ).hover( function()
-  {
-    var popup = $( this ).closest( '.wg-tag' ).find( '.wg-tag-actions-popup' );
-    popup.stop( true, true ).fadeIn();
-  },
-  function()
-  {
-    var popup = $( this ).closest( '.wg-tag' ).find( '.wg-tag-actions-popup' );
-    popup.stop( true, true ).delay( 500 ).fadeOut();
-  });
+  $( '.wg-tag-actions' ).hover(
+    function() { showTagActionPopup( this ); },
+    function() { hideTagActionPopup( this ); }
+  );
 });
+
+/*''''''''''''''''''''''''''''''''''''''*\
+|   Handler for displaying Tag actions   |
+\*______________________________________*/
+
+function showTagActionPopup( element )
+{
+    var popup = $( element ).closest( '.wg-tag' ).find( '.wg-tag-actions-popup' );
+    popup.stop( true, true ).fadeIn();
+}
+
+function hideTagActionPopup( element )
+{
+    var popup = $( element ).closest( '.wg-tag' ).find( '.wg-tag-actions-popup' );
+    popup.stop( true, true ).delay( 500 ).fadeOut();
+}
 
 /*''''''''''''''''''''''''''''''*\
 |   Helper functions w/ jQuery   |
