@@ -12,7 +12,7 @@
     
     this.each( function()
     {
-      formData = $( this ).serializeArray();
+      var formData = $( this ).serializeArray();
       //for ( var it in formData ) log( formData[it].name + ': ' + formData[it].value );
       $.ajax(
       {
