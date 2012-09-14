@@ -1,4 +1,3 @@
-
 $( document ).ready( function()
 {
   $( '.wg-tag-actions' ).hover(
@@ -58,6 +57,8 @@ function toggleElements( selector1, selector2 )
 |   Helper functions w/ plain JS   |
 \*________________________________*/
 
+// function isNumber written by
+// http://stackoverflow.com/users/5445/cms
 function isNumber( n )
 {
   return !isNaN( parseFloat( n ) ) && isFinite( n );
