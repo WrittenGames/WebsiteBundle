@@ -58,6 +58,11 @@ function toggleElements( selector1, selector2 )
 |   Helper functions w/ plain JS   |
 \*________________________________*/
 
+function isNumber( n )
+{
+  return !isNaN( parseFloat( n ) ) && isFinite( n );
+}
+
 function trim( str )
 {
   str = "" + str;
