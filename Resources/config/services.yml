@@ -1,0 +1,18 @@
+parameters:
+    wg.email.class:                       WG\WebsiteBundle\Email\Email
+    wg.twig.website_extension.class:      WG\WebsiteBundle\Twig\Extension\WebsiteExtension
+    wg.website.domain:                    ~
+    wg.website.email_addresses.system:    ~
+    wg.website.email_addresses.webmaster: ~
+
+services:
+    wg.email:
+        class: %wg.email.class%
+        arguments:
+            - '@mailer'
+            - %wg.website.email_addresses.system%
+            - %wg.website.domain%
+    wg.twig.website_extension:
+        class: %wg.twig.website_extension.class%
+        tags:
+            - { name: twig.extension }
