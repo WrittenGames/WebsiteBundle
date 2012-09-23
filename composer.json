@@ -1,0 +1,18 @@
+{
+    "name": "writtengames/website-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 bundle for common website stuff",
+    "keywords": ["website"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Moritz Kraft",
+            "email": "mo@writtengames.com",
+            "homepage": "www.writtengames.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "WG\\WebsiteBundle": "" }
+    },
+    "target-dir": "WG/WebsiteBundle"
+}
