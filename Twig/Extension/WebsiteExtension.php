@@ -30,4 +30,12 @@ class WebsiteExtension extends Twig_Extension
         }
         return $inArray ? $inArray : false;
     }
+    
+    public function printArray( $arr )
+    {
+        echo "<pre>";
+        print_r( $arr );
+        echo "</pre>";
+        die();
+    }
 }
