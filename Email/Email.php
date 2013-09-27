@@ -29,6 +29,6 @@ class Email
                                     ->setReplyTo( $replyTo )
                                     ->setTo( $to )
                                     ->setBody( $body );
-        $this->mailer->send( $message );
+        return $this->mailer->send( $message );
     }
 }
